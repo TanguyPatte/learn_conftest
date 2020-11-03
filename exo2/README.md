@@ -15,6 +15,15 @@ cette_rule_est_false {
   fruits[_] == "banane"
 }
 ```
+So, if I want a rule that raise a deny when `cerise` is in input, I can write
+```rego
+deny[msg] {
+  fruit := input[_]
+  fruit == "cerise"
+  msg = "cerise should not be present in list"
+}
+
+```
 
 # But de l'exercice
 

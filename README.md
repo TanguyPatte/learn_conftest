@@ -71,4 +71,3 @@ my_rule = true {
 }
 ```
 
-By default TODO it si true

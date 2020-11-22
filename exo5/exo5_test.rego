@@ -13,5 +13,5 @@ test_no_violation_if_one_fruit_does_not_start_with_an_a {
 }
 
 test_deny_when_all_fruits_start_with_an_a {
-  deny["fruits should start with an a"] with input as ["ananas", "abricot"]
+  deny["fruits should not all start with an a"] with input as ["ananas", "abricot"]
 }

@@ -1,6 +1,6 @@
-# EXO2
+# Exercice 2
 
-# Iteration on array
+## Iteration on array
 
 Let's have a variable called `my_array`. If we want to iteration over it, we can do it like that :
 
@@ -34,7 +34,7 @@ deny[msg] {
 ```
 
 
-# Exercice 2
+## Exercice 2
 
 In this exercice, `input` will be an array containing environment name (ex: ["dev","prod"]).
 - The rule must trigger if `input` contains `prod` with the message `prod should not be present in list`
@@ -48,7 +48,7 @@ conftest verify --policy exo2/
 
 ```
 
-Or go inside `exo1` directory and
+Or go inside `exo2` directory and
 
 ```bash
 cd exo2

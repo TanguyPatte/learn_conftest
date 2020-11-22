@@ -1,30 +1,45 @@
 # EXO1
 
-# Les base de rego et conftest
+# Rego and Conftest basics
 
-Conftest va chercher les rules `deny`, `violation` et `warn`.
-Nous devons donc nommer nos rules selon ces conventions.
-Le contenu des fichiers analysés par conftest est passé dans la variable input
+Conftest will look for `deny`, `violation` and `warn` rules.
+So we will name our rule this way. It is possible to add suffix to the rule name,
+but we wont use that in this exercices (ex: `deny_missing_tag`)
 
-En rego, les rules peuvent être compris comme :
+The content of parsed files is provided in `input` variable
+
+
+The rule will be true if all condition inside are true
+
+ex:
+
 ```rego
-rule-name IS value IF body
-```
-ex :
-
-```rego
-rule-name = value {
-    x := 42
-    y := 41
-    x > y
+deny[msg] {
+    x := 42 # we assign 42 to x
+    y := 41 # we assigne 41 to y
+    x > y   # we check if x is greater than y
+    msg := "x should be smaller than y"  # we assign a message in msg, it will be display if the rule applies
 }
 ```
-Si `value` est ommit, par défaut c'est `true`
 
-# But de l'exercice
 
-La règle doit répondre au besoin suivant :
-* ne rien faire si input vaut `false`
-* remplir la variable msg avec `input is true` et faire en sorte que la règle s'applique si input vaut `true`
+# Exercice 1
 
-Les tests sont déjà posés, il faut les faire passer au vert
+In this exercice, `input` will be a boolean.
+The rule must trigger if `input` is `true` with the message `input is true`
+The rule should do nothing if `input` is `false`
+
+Test are already written in `exo1_test.rego` file.
+
+To run the test, use
+```bash
+conftest verify --policy exo1/
+
+```
+
+Or go inside `exo1` directory and
+
+```bash
+cd exo1
+conftest verify --policy .
+```

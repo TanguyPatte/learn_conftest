@@ -1,35 +1,56 @@
 # EXO2
 
-# Parcours des éléments dans un tableau
+# Iteration on array
 
-Si j'ai le tableau suivant : `fruits = ["fraise", "cerise", "abricot"]`
-et que je veux savoir s'il contient l'élément `"cerise"`, je peux faire comme cela :
-```rego
-cette_rule_est_true {
-  fruits = ["fraise", "cerise", "abricot"]
-  fruits[_] == "cerise"
-}
+Let's have a variable called `my_array`. If we want to iteration over it, we can do it like that :
 
-cette_rule_est_false {
-  fruits = ["fraise", "cerise", "abricot"]
-  fruits[_] == "banane"
-}
 ```
-So, if I want a rule that raise a deny when `cerise` is in input, I can write
-```rego
+my_array := ["banana","orange","abricot"]
+fruit := my_array[index]
+```
+`fruit` will contain each fruits on each iteration and `index` will contains the given index.
+If we have no use of `index`, we can replace it with `_`:
+```
+fruit := my_array[_]
+```
+
+If we want a rule that trigger if `orange` is present in the list, we can write :
+
+```
 deny[msg] {
-  fruit := input[_]
-  fruit == "cerise"
-  msg = "cerise should not be present in list"
+  my_array := ["banana","orange","abricot"]
+  fruit := my_array[_]
+  fruit == "orange"
+  msg := "orange should not be in the list"
 }
+```
+It could also be written
+```
+deny[msg] {
+  my_array := ["banana","orange","abricot"]
+  my_array[_] == "orange"
+  msg := "orange should not be in the list"
+}
+```
+
+
+# Exercice 2
+
+In this exercice, `input` will be an array containing environment name (ex: ["dev","prod"]).
+- The rule must trigger if `input` contains `prod` with the message `prod should not be present in list`
+- The rule should do nothing if `input` does not contains `prod`
+
+Test are already written in `exo2_test.rego` file.
+
+To run the test, use
+```bash
+conftest verify --policy exo2/
 
 ```
 
-# But de l'exercice
+Or go inside `exo1` directory and
 
-La règle doit répondre au besoin suivant :
-* ne rien faire si input ne contient pas `prod`
-* remplir la variable msg avec `prod should not be present in list` et faire en sorte que la règle s'applique si `input` contient `prod`
-
-Les tests sont déjà posés, il faut les faire passer au vert
-`conftest verify -p exo2`
+```bash
+cd exo2
+conftest verify --policy .
+```

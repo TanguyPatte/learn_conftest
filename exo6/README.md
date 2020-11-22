@@ -1,4 +1,4 @@
-# EXO2
+
 
 # Parcours des éléments dans un tableau
 

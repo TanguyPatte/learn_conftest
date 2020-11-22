@@ -26,8 +26,8 @@ deny[msg] {
 # Exercice 1
 
 In this exercice, `input` will be a boolean.
-The rule must trigger if `input` is `true` with the message `input is true`
-The rule should do nothing if `input` is `false`
+- The rule must trigger if `input` is `true` with the message `input is true`
+- The rule should do nothing if `input` is `false`
 
 Test are already written in `exo1_test.rego` file.
 
